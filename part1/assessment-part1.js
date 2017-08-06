@@ -43,27 +43,27 @@ function daBears(){
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "papaBear", "mamaBear","goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear",];
 
 
 // *************
@@ -72,15 +72,23 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // Write a constructor function called Vehicle.  Vehicle should have a property
 // called gasRemaining that is equal to 100.
-
+  var Vehicle = function(gasRemaining){
+    this.gasRemaining = 100;
+    }
 // Next, assign a function called drive to the Vehicle prototype.  When invoked,
 // drive should subtract 25 from the gasRemaining property of any Vehicle your constructor
 // function creates.
-
+  Vehicle.prototype.drive = function(){
+       return this.gasRemaining -= 25;
+  }
 // Create 2 new Vehicles with the constructor function you made: one called "charger",
+var charger = new Vehicle;
+var mustang = new Vehicle;
 // the other called "mustang".  Using implicit context, invoke the drive method on
 // "charger" once, and invoke it twice on "mustang".
-
+charger.drive()
+mustang.drive()
+mustang.drive()
 // CODE HERE...
 
 
@@ -105,7 +113,16 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // and should neither modify them nor break when encountering them.
 
 
-
+String.prototype.grammarPolice = function() {
+  var arr = [];
+  for (var prop in this) {
+    (this[prop].length > 0) ? arr.push(this[prop]) : null
+  } 
+    var newString= arr.join('').split(' ').map((e)=>{
+      return e.slice(0,1).toUpperCase() + e.slice(1).toLowerCase()
+    });
+    return newString.join(' ');
+}
 
 // CODE HERE...
 
@@ -118,7 +135,9 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // Write a function called valueType that has two parameters. Jasmine will pass
 // arguments into your function through the parameters.  Your function will need
 // to compare the passed-in values and return a string based on that comparison, as follows:
-
+function valueTypep(arg1, arg2){
+  
+}
 // If the arguments are of the same type and have the same value, return "Exactly the same"
 
 // If the arguments have the same value but are of different types, return "Same value, different types"
@@ -126,7 +145,12 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // In all other cases, return "Different values"
 
 // CODE HERE...
-
+function valueType(arg1, arg2){
+  var statement = typeof arg1 === typeof arg2 && arg1 === arg2 ? 
+  'Exactly the same' :  arg1 == arg2 ? 
+  'Same value, different types' : 'Different values';
+  return statement;
+}
 
 
 // *************
@@ -139,5 +163,9 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // When your promise receives its results, set variable 'theAnswer' (seen below) equal to the result.
 
 var theAnswer = "Unknown";
-
 // CODE HERE...
+function promiseCatcher(promise) {
+  promise.then((response)=> {
+    theAnswer = response
+  })
+}

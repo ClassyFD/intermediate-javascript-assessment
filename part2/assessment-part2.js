@@ -38,13 +38,23 @@ var firstUser = 'don\'t touch this string!';
 var thirdUser = 'don\'t touch this string, either!';
 
 function noWeakLink() {
-
+  
+  // $http({
+  //   method: 'GET',
+  //   url: '/api/users'
+  // }).then((response)=>{
+  //   firstUser = response.data[0];   
+  // })
   return $http({
     method: 'GET',
     url: '/api/users'
+  }).then((response)=>{
+    firstUser = response.data[0]; 
+    return response;  
+  }).then((response)=>{
+      thirdUser = response.data[2];
+      return response.data[9];
   })
-  // CODE HERE...
-
 }
 
 
@@ -73,6 +83,7 @@ function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
+var boundToElephant = large.bind(elephant);
 // CODE HERE...
 
 
@@ -87,10 +98,10 @@ function large() {
 // Use explicit binding to give capacity the context of crew
 // and return the bound function.
 
-// CODE HERE...
-
-
-
+function deathStar(capacity, crew) {
+  var bound = capacity.bind(crew);
+  return bound
+}
 // *************
 // * PROBLEM 4 *
 // *************
