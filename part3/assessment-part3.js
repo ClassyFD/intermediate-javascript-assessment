@@ -12,8 +12,13 @@
 // with the animal as the context, and 'Trogdor' as a parameter.
 // return the result of your updateAnimal invocation
 
-// CODE HERE...
-
+function callBinding(magicAnimals, updateAnimal, id){
+var Trogdor;
+    magicAnimals.filter((e)=>{
+      e.id === id? Trogdor = e:null;
+    })
+   return updateAnimal('Trogdor');   
+}
 
 
 // *************
@@ -28,7 +33,16 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
+function applyBinding(magicAnimals, updateAnimal, id) {
+var arr; 
+        magicAnimals.filter((e)=>{
+         if (e.id === id){
+             arr = e;
+         }
+    })
+    updateAnimal = updateAnimal.bind(arr);
+    return updateAnimal('being majestic', 'eating rainbows')
+}
 
 
 // *************
@@ -46,9 +60,14 @@
 // NOTE: Manually invoking your function here will alter the 'foo' variable before tests run, causing them to fail.
 
 var foo;
-
-// CODE HERE...
-
+    function promiseMe($q) {
+    var deffered = $q.defer();
+        setTimeout(function() {
+            foo = 'bar'
+            deffered.resolve(foo);
+        }, 20);
+        return deffered.promise
+    }
 
 
 // *************
@@ -62,5 +81,20 @@ var foo;
 // Set up your custom promise, then make a GET request using $http to '/api/users'.
 // Make an array of emails (array of strings) from the returned data (You will need to console log or debug to figure this out),
 // and then resolve the array as you complete your promise.
-
-// CODE HERE...
+function emailList($q, $http){
+    var arr=[];
+    var deffered = $q.defer();
+    $http({
+        method : "GET",
+        url : "/api/users"
+    }).then((response)=>{
+        response.data.map((e)=>{
+            arr.push(e.email);
+        })
+        console.log(arr);
+    })
+    setTimeout(function() {
+        deffered.resolve(arr);
+    }, 1000);
+    return deffered.promise;
+}

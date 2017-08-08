@@ -112,7 +112,11 @@ function deathStar(capacity, crew) {
 // then return a closure function:
 // The closure function will take in a parameter: liabilities (Number)
 // The closure function will return the combined value of assets and liabilities.
-
+function accountingOffice(assets) {
+ return function(liabilities){
+return assets + liabilities;
+ }
+}
 // CODE HERE...
 
 
@@ -137,7 +141,16 @@ function deathStar(capacity, crew) {
 //     name: << name (given parameter) >>,
 //     remember: << array of items to be remembered >>
 // };
-
+function forgetter(name){
+    var arr = [];
+  return function rememberallitem(item){
+    arr.push(item);
+    return {
+      name:name,
+      remember: arr
+    }
+  }
+}
 // CODE HERE...
 
 
@@ -165,5 +178,30 @@ function deathStar(capacity, crew) {
 // }
 
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
-
+function frodo(startingHungerValue, startingDangerValue){
+var hunger = startingHungerValue;
+var danger = startingDangerValue;
+return {
+  dinnerOverFire : function(){
+    hunger <= 0? hunger = 0:
+    hunger -= 25;
+    danger >= 100? danger = 100:
+    danger += 40;
+    return {
+      hunger: hunger,
+      danger: danger
+    }
+  },
+  hidingInBush : function() {
+    hunger >= 100? hunger = 100:
+    hunger += 35;
+    danger <= 0? danger = 0:
+    danger -=20;
+    return {
+      hunger: hunger,
+      danger: danger
+    }
+  }
+}
+}
 // CODE HERE...
